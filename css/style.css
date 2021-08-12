@@ -1,0 +1,100 @@
+* {
+    box-sizing: border-box;
+}
+
+/* FONTS */
+
+/* font-family: Poppins;
+font-family: "Poppins - Extra Bold";
+font-family: "Poppins - Semi Bold"; */
+
+/* @font-face {
+    font-family: Poppins;
+    src: url(/SITE/fonts/eurofurence/eurof55.ttf);
+}
+
+@font-face {
+    font-family: Poppins Extra-Bold;
+    src: url(/SITE/fonts/eurofurence/eurof55.ttf);
+}
+
+@font-face {
+    font-family: Poppins Semi-Bold;
+    src: url(/SITE/fonts/eurofurence/eurof55.ttf);
+} */
+
+/* BASE */
+
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* LAYOUT */
+
+/* .main-layout {
+   
+} */
+
+/* NAV BAR */
+
+.main-nav {
+    width: 50%;
+}
+
+/* IMAGE GALLERY */
+
+.image-container {
+    gap: 6px;
+}
+
+.img-item {
+    width: 100px;
+}
+
+/* CONTROLS CONTAINER */
+
+/* HELPERS */
+
+.edit-font {
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 4px;
+}
+
+.select-font {
+    grid-column: 1 / 4;
+}
+
+.flex {
+    display: flex;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.clean-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.grid {
+    display: grid;
+}
+
+.hide {
+    display: none;
+}

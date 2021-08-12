@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Meme Generator</title>
+</head>
+
+<body onload="init()">
+    <div class="screen main-screen" onclick="onToggleMenu()"></div>
+
+    <header class="main-header">
+        <div class="main-layout flex space-between">
+            <img src="" class="logo">LOGO
+            <ul class="main-nav clean-list flex space-between">
+                <li><a class="btn-gallery" href="#" onclick="onOpenGallery()">Gallery</a></li>
+                <!-- <li><a class="btn-memes" href="#" onclick="onToggleMemesMenu()">Memes</a></li>
+                <li><a class="btn-about" href="#" onclick="onToggleAboutModal()">About</a></li> -->
+            </ul>
+        </div>
+    </header>
+
+    <main class="main-layout">
+        <section class="meme-editor flex space-between hide">
+
+            <div class="canvas-container">
+                <canvas id="main-canvas" class="main-canvas" width="400" height="400"
+                    style="outline:1px solid green"></canvas>
+                <div class="canvas-img-container"></div>
+            </div>
+
+            <section class="controls-container" style="outline:1px solid green">
+                <input type="text" class="input-txt" name="input-txt" oninput="onEditMemeText(this)">
+                <div class="ctrl-btns flex justify-center space-between">
+                    <button class="ctrl-btn switch" onclick="onSwitchLines()">switch</button>
+                    <button class="ctrl-btn up" onclick="onMoveLine(-5)">up</button>
+                    <button class="ctrl-btn down" onclick="onMoveLine(+5)">down</button>
+                    <button class="ctrl-btn add-line" onclick="onAddLine()">add-line</button>
+                    <button class="ctrl-btn delete" onclick="onDeleteLine()">delete</button>
+                </div>
+                <div class="edit-font grid">
+
+                    <button class="ctrl-btn" onclick="onChangeFontSize(+2)">A-plus</button>
+                    <button class="ctrl-btn" onclick="onChangeFontSize(-2)">A-minus</button>
+                    <button class="ctrl-btn" onclick="onChangeTextAlign('left')">Text Left</button>
+                    <button class="ctrl-btn" onclick="onChangeTextAlign('center')">Text Center</button>
+                    <button class="ctrl-btn" onclick="onChangeTextAlign('right')">Text Right</button>
+
+                    <select class="select-font" name="select-font" onchange="onChangeFont(this)">
+                        <option value="impact">Impact</option>
+                        <option value="Monospace">Monospace</option>
+                        <option value="Tahoma">Tahoma</option>
+                    </select>
+
+                    <button class="ctrl-btn" onclick="onToggleStroke()">Toggle Stroke</button>
+                    <button class="ctrl-btn strokColor"><input type="color" class="strokColor"
+                            onchange="setStrokeColor(this)"></button>
+                </div>
+                <form class="share-btns flex space-between" action="" method="POST" enctype="multipart/form-data"
+                    onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden">
+                    <a class="share-link" id="share-link" href="#" donload="A"></a>
+                    <!-- <button class="btn share" type="submit">Publish</button> -->
+                    <!-- <a class="btn save" href="#" onclick="onSaveImg()">Save</a> -->
+                    <a class="btn download" href="#" onclick="onDownload(this)" download="my-img.jpg">Download</a>
+                </form>
+                <div class="stickers-container flex hide">
+                    <button class="btn-browse browse-left" onclick="onChanePage()">browse-L</button>
+                    <div class="flex align-center"><img src="" onclick="onAddSticker()"><img src=""
+                            onclick="onAddSticker()"><img src="" onclick="onAddSticker()"></div>
+                    <button class="btn-browse browse-right" onclick="onChanePage()">Browse-R</button>
+                </div>
+            </section>
+
+        </section>
+
+        <section class="gallery-container">
+            <header class="gallery-header flex justify-center">
+                <h1>GALLERY HEADER</h1>
+            </header>
+            <section class="image-container flex grid justify-center align-center">
+                <h1>IMAGES</h1>
+            </section>
+        </section>
+    </main>
+
+    <script src="./js/meme-service.js"></script>
+    <script src="./js/meme-controler.js"></script>
+</body>
+
+</html>
