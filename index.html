@@ -13,18 +13,18 @@
     <div class="screen main-screen" onclick="onToggleMenu()"></div>
 
     <header class="main-header">
-        <div class="main-layout flex space-between">
-            <img src="" class="logo">LOGO
-            <ul class="main-nav clean-list flex space-between">
-                <li><a class="btn-gallery" href="#" onclick="onOpenGallery()">Gallery</a></li>
-                <!-- <li><a class="btn-memes" href="#" onclick="onToggleMemesMenu()">Memes</a></li>
-                <li><a class="btn-about" href="#" onclick="onToggleAboutModal()">About</a></li> -->
+        <div class="main-nav main-layout flex space-between align-center">
+            <img src="images/logo.png" class="logo">
+            <ul class="nav-bar clean-list flex justify-center">
+                <li><a class="nav-btn" href="#" onclick="onOpenGallery()">Gallery</a></li>
+                <li><a class="nav-btn" href="#" onclick="onToggleMemesMenu()">Memes</a></li>
+                <li><a class="nav-btn" href="#" onclick="onToggleAboutModal()">About</a></li>
             </ul>
         </div>
     </header>
 
     <main class="main-layout">
-        <section class="meme-editor flex space-between hide">
+        <section class="meme-editor main-layout flex space-between hide wrap">
 
             <div class="canvas-container">
                 <canvas id="main-canvas" class="main-canvas" width="400" height="400"
@@ -32,47 +32,85 @@
                 <div class="canvas-img-container"></div>
             </div>
 
-            <section class="controls-container" style="outline:1px solid green">
+            <section class="controls-container flex flex-column justify-center align-center">
+
                 <input type="text" class="input-txt" name="input-txt" oninput="onEditMemeText(this)">
-                <div class="ctrl-btns flex justify-center space-between">
-                    <button class="ctrl-btn switch" onclick="onSwitchLines()">switch</button>
-                    <button class="ctrl-btn up" onclick="onMoveLine(-5)">up</button>
-                    <button class="ctrl-btn down" onclick="onMoveLine(+5)">down</button>
-                    <button class="ctrl-btn add-line" onclick="onAddLine()">add-line</button>
-                    <button class="ctrl-btn delete" onclick="onDeleteLine()">delete</button>
+
+                <div class="edit-line-btns flex justify-center">
+                    <button class="ctrl-btn switch" onclick="onSwitchLines()">
+                        <span class="fas fa-exchange-alt"></span>
+                    </button>
+                    <button class="ctrl-btn up" onclick="onMoveLine(-5)">
+                        <span class="fas fa-arrow-up"></span>
+                    </button>
+                    <button class="ctrl-btn down" onclick="onMoveLine(+5)">
+                        <span class="fas fa-arrow-down"></span>
+                    </button>
+                    <button class="ctrl-btn add-line" onclick="onAddLine()">
+                        <span class="fas fa-plus"></span>
+                    </button>
+                    <button class="ctrl-btn delete" onclick="onDeleteLine()">
+                        <span class="fas fa-trash"></span>
+                    </button>
                 </div>
-                <div class="edit-font grid">
 
-                    <button class="ctrl-btn" onclick="onChangeFontSize(+2)">A-plus</button>
-                    <button class="ctrl-btn" onclick="onChangeFontSize(-2)">A-minus</button>
-                    <button class="ctrl-btn" onclick="onChangeTextAlign('left')">Text Left</button>
-                    <button class="ctrl-btn" onclick="onChangeTextAlign('center')">Text Center</button>
-                    <button class="ctrl-btn" onclick="onChangeTextAlign('right')">Text Right</button>
+                <div class="edit-font-btns grid">
 
-                    <select class="select-font" name="select-font" onchange="onChangeFont(this)">
+                    <button class="ctrl-btn increase-font" onclick="onChangeFontSize(+3)">A</button>
+                    <button class="ctrl-btn decrease-font" onclick="onChangeFontSize(-3)">A</button>
+
+                    <button class="ctrl-btn" onclick="onChangeTextAlign('left')">
+                        <span class="fas fa-align-left"></span>
+                    </button>
+                    <button class="ctrl-btn" onclick="onChangeTextAlign('center')">
+                        <span class="fas fa-align-center"></span>
+                    </button>
+                    <button class="ctrl-btn" onclick="onChangeTextAlign('right')">
+                        <span class="fas fa-align-right"></span>
+                    </button>
+
+                    <select class="ctrl-btn select-font" name="select-font" onchange="onChangeFont(this)">
                         <option value="impact">Impact</option>
-                        <option value="Monospace">Monospace</option>
-                        <option value="Tahoma">Tahoma</option>
+                        <option value="monospace">Monospace</option>
+                        <option value="tahoma">Tahoma</option>
                     </select>
 
-                    <button class="ctrl-btn" onclick="onToggleStroke()">Toggle Stroke</button>
-                    <button class="ctrl-btn strokColor"><input type="color" class="strokColor"
-                            onchange="setStrokeColor(this)"></button>
+                    <button class="ctrl-btn stroke" onclick="onToggleStroke()">S</button>
+
+                    <button class="ctrl-btn strokeColor fas fa-pallete">
+                        <input class="strokeColor" type="color" onchange="setStrokeColor(this)"
+                            colorpick-eyedropper-active="true">
+                    </button>
+
                 </div>
-                <form class="share-btns flex space-between" action="" method="POST" enctype="multipart/form-data"
+
+                <div class="stickers-container flex">
+                    <button class="btn-browse browse-left fas fa-caret-left" onclick="onChanePage()"></button>
+                    <div class="flex align-center">
+                        <img src="" onclick="onAddSticker()">
+                        <img src="" onclick="onAddSticker()">
+                        <img src="" onclick="onAddSticker()">
+                    </div>
+                    <button class="btn-browse browse-right fas fa-caret-right" onclick="onChanePage()"></button>
+                </div>
+
+                <form class="export-btns flex " action="" method="POST" enctype="multipart/form-data"
                     onsubmit="uploadImg(this, event)">
                     <input name="img" id="imgData" type="hidden">
-                    <a class="share-link" id="share-link" href="#" donload="A"></a>
-                    <!-- <button class="btn share" type="submit">Publish</button> -->
-                    <!-- <a class="btn save" href="#" onclick="onSaveImg()">Save</a> -->
-                    <a class="btn download" href="#" onclick="onDownload(this)" download="my-img.jpg">Download</a>
+
+                    <button class="btn-export btn-share fas fa-share-alt" type="submit">
+                        <a class="btn-export share-link" id="share-link" href="#" download="A">Share</a>
+                    </button>
+
+                    <button class="btn-export btn-save fas fa-sd-card">
+                        <a class="btn-export" href="#" onclick="onSaveImg()">Save</a>
+                    </button>
+
+                    <a class="btn-export btn-download fas fa-download" href="#" onclick="onDownload(this)"
+                        download="my-img.jpg">Download</a>
+
                 </form>
-                <div class="stickers-container flex hide">
-                    <button class="btn-browse browse-left" onclick="onChanePage()">browse-L</button>
-                    <div class="flex align-center"><img src="" onclick="onAddSticker()"><img src=""
-                            onclick="onAddSticker()"><img src="" onclick="onAddSticker()"></div>
-                    <button class="btn-browse browse-right" onclick="onChanePage()">Browse-R</button>
-                </div>
+
             </section>
 
         </section>
