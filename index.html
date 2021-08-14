@@ -10,7 +10,7 @@
 </head>
 
 <body onload="init()">
-    <div class="screen main-screen" onclick="onToggleMenu()"></div>
+    <div class="screen" onclick="onToggleMenu()"></div>
 
     <header class="main-header">
         <div class="main-nav main-layout flex space-between align-center">
@@ -18,7 +18,7 @@
             <ul class="nav-bar clean-list flex justify-center">
                 <li><a class="nav-btn" href="#" onclick="onOpenGallery()">Gallery</a></li>
                 <li><a class="nav-btn" href="#" onclick="onToggleMemesMenu()">Memes</a></li>
-                <li><a class="nav-btn" href="#" onclick="onToggleAboutModal()">About</a></li>
+                <li><a class="nav-btn" href="#" onclick="onToggleAbout()">About</a></li>
             </ul>
             <button class="btn-menu-toggle fas fa-bars" onclick="onToggleMenu()">
 
@@ -86,12 +86,10 @@
 
                 </div>
 
-                <div class="stickers-container flex">
-                    <button class="btn-browse browse-left fas fa-caret-left" onclick="onChanePage()"></button>
+                <div class="stickers-container flex align-center space-between">
+                    <button class="btn-browse browse-left fas fa-caret-left"></button>
                     <div class="flex align-center">
-                        <img src="" onclick="onAddSticker()">
-                        <img src="" onclick="onAddSticker()">
-                        <img src="" onclick="onAddSticker()">
+                        <img src="">
                     </div>
                     <button class="btn-browse browse-right fas fa-caret-right" onclick="onChanePage()"></button>
                 </div>
@@ -135,7 +133,6 @@
             </header>
 
             <section class="image-container grid justify-center align-center">
-                <h1>IMAGES</h1>
             </section>
         </section>
     </main>

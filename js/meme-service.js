@@ -64,6 +64,41 @@ var gImgs = [{
         id: 11,
         url: './images/11.jpg',
         keywords: ['happy']
+    },
+    {
+        id: 12,
+        url: './images/12.jpg',
+        keywords: ['happy']
+    },
+    {
+        id: 12,
+        url: './images/12.jpg',
+        keywords: ['happy']
+    },
+    {
+        id: 14,
+        url: './images/14.jpg',
+        keywords: ['happy']
+    },
+    {
+        id: 15,
+        url: './images/15.jpg',
+        keywords: ['happy']
+    },
+    {
+        id: 16,
+        url: './images/16.jpg',
+        keywords: ['happy']
+    },
+    {
+        id: 17,
+        url: './images/17.jpg',
+        keywords: ['happy']
+    },
+    {
+        id: 18,
+        url: './images/18.jpg',
+        keywords: ['happy']
     }
 
 ];
@@ -78,14 +113,6 @@ function initCanvas(elCanvas, ctx) {
     gElCanvas = elCanvas;
     gCtx = ctx;
 }
-
-// function resizeCanvas(elContainer) {
-//     console.log('elContainer', elContainer);
-//     console.log(elContainer.offsetWidth);
-//     gElCanvas.width = elContainer.offsetWidth;
-//     console.log(gElCanvas.width);
-//     gElCanvas.height = elContainer.offsetHeight;
-// }
 
 function getImageUrlById(imgId) {
     var currImg = gImgs.find(img => img.id === imgId);

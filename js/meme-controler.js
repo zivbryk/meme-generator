@@ -8,9 +8,6 @@ function init() {
     var ctx = elCanvas.getContext('2d');
     initCanvas(elCanvas, ctx);
 
-    // const elContainer = document.querySelector('.canvas-container');
-    // resizeCanvas(elContainer);
-
     renderGallery();
     addListeners();
 }
@@ -18,12 +15,6 @@ function init() {
 function addListeners() {
     addMouseListeners()
     addTouchListeners()
-
-    // const elContainer = document.querySelector('.canvas-container');
-    // resizeCanvas(elContainer);
-    // window.addEventListener('resize', () => {
-    //     resizeCanvas()
-    // })
 }
 
 function addMouseListeners() {
@@ -136,7 +127,6 @@ function toggleScreens() {
 function onChangeFontSize(value) {
     var meme = getMeme();
     var selectedLine = meme.selectedLineIdx;
-    // if (!selectedLine) return;
     meme.lines[selectedLine].size += value;
     drawImg(meme.selectedImgId);
     onDrawText(selectedLine);
