@@ -20,15 +20,17 @@
                 <li><a class="nav-btn" href="#" onclick="onToggleMemesMenu()">Memes</a></li>
                 <li><a class="nav-btn" href="#" onclick="onToggleAboutModal()">About</a></li>
             </ul>
+            <button class="btn-menu-toggle fas fa-bars" onclick="onToggleMenu()">
+
+            </button>
         </div>
     </header>
 
-    <main class="main-layout">
+    <main>
         <section class="meme-editor main-layout flex space-between hide wrap">
 
             <div class="canvas-container">
-                <canvas id="main-canvas" class="main-canvas" width="400" height="400"
-                    style="outline:1px solid green"></canvas>
+                <canvas id="main-canvas" class="main-canvas" width="480" height="480"></canvas>
                 <div class="canvas-img-container"></div>
             </div>
 
@@ -116,10 +118,23 @@
         </section>
 
         <section class="gallery-container">
-            <header class="gallery-header flex justify-center">
-                <h1>GALLERY HEADER</h1>
+            <header class="gallery-header flex align-center wrap justify-center">
+                <form class="search-bar flex">
+                    <input list="tag-words" class="input-search" type="text" placeholder="Search">
+                    <data-list id="tag-words">
+                        <option value="examp1"></option>
+                    </data-list>
+                    <button class="btn-search fas fa-search"></button>
+                </form>
+
+                <div class="tag-words-container">
+                    funny angry dog cat bibi
+                </div>
+
+                <button class="btn-more">More</button>
             </header>
-            <section class="image-container flex grid justify-center align-center">
+
+            <section class="image-container grid justify-center align-center">
                 <h1>IMAGES</h1>
             </section>
         </section>

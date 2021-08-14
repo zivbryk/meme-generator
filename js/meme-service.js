@@ -71,22 +71,21 @@ var gImgs = [{
 var gMeme = {
     selectedImgId: 0,
     selectedLineIdx: 0,
-    lines: [{
-        txt: '',
-        size: 40,
-        align: 'center',
-        color: 'black',
-        fontFam: 'Impact',
-        stroke: true,
-        yVal: 0,
-        xVal: 0
-    }]
+    lines: []
 }
 
-function initCanvas() {
-    gElCanvas = document.getElementById('main-canvas');
-    gCtx = gElCanvas.getContext('2d');
+function initCanvas(elCanvas, ctx) {
+    gElCanvas = elCanvas;
+    gCtx = ctx;
 }
+
+// function resizeCanvas(elContainer) {
+//     console.log('elContainer', elContainer);
+//     console.log(elContainer.offsetWidth);
+//     gElCanvas.width = elContainer.offsetWidth;
+//     console.log(gElCanvas.width);
+//     gElCanvas.height = elContainer.offsetHeight;
+// }
 
 function getImageUrlById(imgId) {
     var currImg = gImgs.find(img => img.id === imgId);
@@ -101,11 +100,15 @@ function drawImg(imgId) {
 }
 
 function drawText(lineIdx) {
-    if (gMeme.lines.length === 0)
-        return;
+    if (gMeme.lines.length === 0) return;
 
     gMeme.lines.forEach((line, idx) => {
-        var x = gElCanvas.width / 2;
+        if (line.txt === '') {
+            var x = gElCanvas.width / 2;
+        } else {
+            var x = line.xVal;
+        }
+
 
         if (line.yVal === 0) {
             switch (lineIdx) {
@@ -138,10 +141,11 @@ function drawText(lineIdx) {
             case 'right':
                 x = gElCanvas.width / 1.333;
                 break;
-
             default:
+                x = line.xVal;
                 break;
         }
+
         line.xVal = x;
         line.yVal = y;
 
@@ -161,11 +165,11 @@ function drawText(lineIdx) {
         gCtx.textAlign = 'center';
         gCtx.fillText(currTxt, x, y);
         gCtx.strokeText(currTxt, x, y);
-        var currLineTxt = gCtx.measureText(line.txt);
+        var currLineMetrics = gCtx.measureText(line.txt);
 
         if (idx === gMeme.selectedLineIdx) {
             gCtx.strokeStyle = 'white';
-            gCtx.strokeRect(x - (currLineTxt.width / 2) - 8, y - currFontSize, currLineTxt.width + 18, currFontSize + 8);
+            gCtx.strokeRect(x - (currLineMetrics.width / 2) - 8, y - currFontSize, currLineMetrics.width + 18, currFontSize + 8);
         }
 
     })
@@ -193,7 +197,8 @@ function addLineToMeme() {
         fontFam: gCurrFontFam,
         stroke: true,
         yVal: 0,
-        xVal: 0
+        xVal: 0,
+        isDrag: false
     })
 }
 
@@ -212,4 +217,49 @@ function setGCurrStrokeColor(strokeColor) {
 
 function setGCurrFontFam(currFontFam) {
     gCurrFontFam = currFontFam;
+}
+
+function isLineClicked(clickedPos) {
+
+    var isClickInLine = false;
+
+    gMeme.lines.forEach((currLine, idx) => {
+
+        var linePosX = currLine.xVal;
+        var linePosY = currLine.yVal;
+
+        var currLineMetrics = gCtx.measureText(currLine.txt);
+        var currLineWidth = currLineMetrics.width;
+        var currLineHeight = currLineMetrics.actualBoundingBoxAscent +
+            currLineMetrics.actualBoundingBoxDescent;
+        var isXClickInLine = ((linePosX - (currLineWidth / 2)) <= clickedPos.x) &&
+            (clickedPos.x <= (linePosX + (currLineWidth / 2)));
+        var isYClickInLine = ((linePosY - (currLineHeight / 2)) <= clickedPos.y) &&
+            (clickedPos.y <= (linePosY + currLineHeight));
+
+        if (isXClickInLine && isYClickInLine) {
+            gMeme.selectedLineIdx = idx;
+
+            isClickInLine = isXClickInLine && isYClickInLine;
+        }
+    })
+
+    return isClickInLine;
+}
+
+function setLineDrag(isDrag) {
+    var currLine = gMeme.lines[gMeme.selectedLineIdx];
+    if (!currLine) return;
+    currLine.isDrag = isDrag;
+    currLine.align = '';
+}
+
+function getLine() {
+    return gMeme.lines[gMeme.selectedLineIdx];
+}
+
+function moveLine(dx, dy) {
+    var currLine = gMeme.lines[gMeme.selectedLineIdx];
+    currLine.xVal += dx;
+    currLine.yVal += dy;
 }
