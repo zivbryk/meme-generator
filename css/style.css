@@ -310,6 +310,19 @@ button.switch {
 .ctrl-btn.stroke {
     text-decoration: underline;
     padding: 2px 13px 7px 13px;
+    position: relative;
+}
+
+input.strokeFill {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
 }
 
 .input.strokeColor {
@@ -408,6 +421,8 @@ button.btn-export {
     font-size: 1.3125rem;
     margin: 0px 0px 0px 40px;
     padding: 14px 0px;
+    outline-style: none;
+    cursor: auto;
 }
 
 .btn-search {
@@ -452,7 +467,7 @@ button.btn-export {
 }
 
 .gallery-container {
-    max-height: 75vh;
+    max-height: 82vh;
     overflow-y: scroll;
     overflow-x: hidden;
     background-color: #383B42;
@@ -601,7 +616,6 @@ button.btn-export {
         margin: auto;
     }
     .meme-editor {
-        display: flex;
         flex-direction: row;
     }
     .canvas-container {

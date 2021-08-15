@@ -130,13 +130,15 @@ function drawText(lineIdx) {
         var currTxt = line.txt;
         var currFontSize = line.size;
         var currStrokeColor = line.color;
-        var currFontFam = line.fontFam
+        var currFillColor = line.fillColor;
+        var currFontFam = line.fontFam;
 
         gCtx.font = `${currFontSize}px ${currFontFam}`;
         gCtx.lineWidth = 2;
         gCtx.strokeStyle = currStrokeColor;
+        gCtx.fillStyle = currFillColor;
         if (line.stroke) {
-            gCtx.fillStyle = 'white';
+            gCtx.fillStyle = currFillColor;
         } else {
             gCtx.fillStyle = currStrokeColor;
         }
@@ -154,6 +156,7 @@ function drawText(lineIdx) {
 }
 
 function onOpenGallery() {
+    if (document.querySelector('.gallery-container').classList.contains('.hide')) return;
     toggleScreens();
     renderGallery();
     onToggleMenu();
@@ -254,8 +257,14 @@ function onDownload(elLink) {
     downloadImg(elLink)
 }
 
-function onToggleStroke() {
+function onToggleStroke(elColorInput) {
     var meme = getMeme();
+    if (meme.lines.length === 0) return;
+
+    var fillColor = elColorInput.value;
+    setCurrFillColor(fillColor);
+    meme.lines[meme.selectedLineIdx].fillColor = fillColor;
+
     var isStroke = meme.lines[meme.selectedLineIdx].stroke;
     if (isStroke) {
         meme.lines[meme.selectedLineIdx].stroke = false;
@@ -267,12 +276,18 @@ function onToggleStroke() {
 
 function setStrokeColor(elColorInput) {
     var meme = getMeme();
+    if (meme.lines.length === 0) return;
     var strokeColor = elColorInput.value;
-    setGCurrStrokeColor(strokeColor);
+    setCurrStrokeColor(strokeColor);
     meme.lines[meme.selectedLineIdx].color = strokeColor;
     renderCanvas(meme.selectedImgId, meme.selectedLineIdx);
 }
 
 function onToggleMenu() {
     document.querySelector('body').classList.toggle('menu-open');
+}
+
+function onSearchWord(ev) {
+    ev.preventDefault();
+
 }

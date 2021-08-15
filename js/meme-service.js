@@ -1,6 +1,7 @@
 'use strict'
 
 var gCurrStrokeColor = 'black';
+var gCurrFillColor = 'white'
 var gCurrFontFam = 'Impact'
 
 var gKeywords = {
@@ -181,6 +182,7 @@ function addLineToMeme() {
         size: 40,
         align: 'center',
         color: gCurrStrokeColor,
+        fillColor: gCurrFillColor,
         fontFam: gCurrFontFam,
         stroke: true,
         yVal: 0,
@@ -198,8 +200,12 @@ function downloadImg(elLink) {
     elLink.href = imgContent;
 }
 
-function setGCurrStrokeColor(strokeColor) {
+function setCurrStrokeColor(strokeColor) {
     gCurrStrokeColor = strokeColor;
+}
+
+function setCurrFillColor(fillColor) {
+    gCurrFillColor = fillColor;
 }
 
 function setGCurrFontFam(currFontFam) {

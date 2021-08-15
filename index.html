@@ -14,7 +14,7 @@
 
     <header class="main-header">
         <div class="main-nav main-layout flex space-between align-center">
-            <img src="images/logo.png" class="logo">
+            <img src="images/logo.png" class="logo" onclick="location.href='index.html'">
             <ul class="nav-bar clean-list flex justify-center">
                 <li><a class="nav-btn" href="#" onclick="onOpenGallery()">Gallery</a></li>
                 <li><a class="nav-btn" href="#" onclick="onToggleMemesMenu()">Memes</a></li>
@@ -79,7 +79,10 @@
                         <option value="tahoma">Tahoma</option>
                     </select>
 
-                    <button class="ctrl-btn stroke" onclick="onToggleStroke()">S</button>
+                    <button class="ctrl-btn stroke">S
+                        <input class="strokeFill" type="color" onchange="onToggleStroke(this)"
+                            colorpick-eyedropper-active="true">
+                    </button>
 
                     <button class="ctrl-btn strokeColor fas fa-pallete">
                         <input class="strokeColor" type="color" onchange="setStrokeColor(this)"
@@ -119,7 +122,7 @@
 
         <section class="gallery-container">
             <header class="gallery-header flex align-center wrap justify-center">
-                <form class="search-bar flex">
+                <form class="search-bar flex" onchange="onSearchWord(event)">
                     <input list="tag-words" class="input-search" type="text" placeholder="Search">
                     <data-list id="tag-words">
                         <option value="examp1"></option>
